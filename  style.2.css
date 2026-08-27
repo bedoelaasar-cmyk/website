@@ -1,0 +1,635 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+h1 {
+    font-size: 3rem;
+    color: #fff;
+    text-align: center;
+    margin: 2rem 0;
+}
+body { margin: 0; min-height: 100vh;
+background-image: url("./A.jpg");
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+background-attachment: fixed;
+
+color: white;
+font-family: Arial, sans-serif;}
+
+
+header {
+    display:  flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 2rem auto;
+    max-width: 1200px;
+}
+.navigation ul {
+    list-style-type: none;
+    display: flex;
+    gap: 2rem;
+}
+.navigation a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 1.2rem;
+    transition: 0.3s ease-in-out;
+}
+.navigation a:hover {
+    color: #1cbeb1;
+}
+hr {
+    opacity: 50%;
+}
+p {
+    color: #fff;
+    font-size: 1.2rem;
+    text-align: center;
+    margin: 2rem 0;
+}
+ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    color: #ffffff;
+}
+/* =========================
+   Responsive Design
+   ========================= */
+
+* {
+    box-sizing: border-box;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+body {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+/* Tablets */
+@media (max-width: 900px) {
+
+    header {
+        padding: 20px 4%;
+    }
+
+    .navigation ul {
+        gap: 20px;
+    }
+
+    .navigation a {
+        font-size: 16px;
+    }
+
+    .content {
+        padding: 80px 5%;
+    }
+
+    .content h1 {
+        font-size: 40px;
+    }
+}
+
+
+/* Phones */
+@media (max-width: 600px) {
+
+    header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+        padding: 15px;
+    }
+
+    /* Navigation stays horizontal */
+    .navigation ul {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 10px;
+        margin: 0;
+        padding: 0;
+    }
+
+    .navigation a {
+        font-size: 12px;
+        white-space: nowrap;
+    }
+
+    /* Profile image */
+    header img {
+        width: 60px;
+        height: 60px;
+        object-fit: cover;
+    }
+
+    .content {
+        padding: 60px 20px;
+        text-align: center;
+    }
+
+    .content h1 {
+        font-size: clamp(28px, 8vw, 40px);
+    }
+
+    .content p {
+        font-size: 16px;
+    }
+
+    .about,
+    .contact {
+        padding: 50px 20px;
+    }
+
+    .about h1,
+    .contact h1 {
+        font-size: clamp(28px, 8vw, 40px);
+    }
+
+    .about p,
+    .contact p,
+    .contact li {
+        font-size: 16px;
+    }
+}
+
+
+/* Very small phones */
+@media (max-width: 380px) {
+
+    header {
+        padding: 10px;
+    }
+
+    .navigation ul {
+        gap: 6px;
+    }
+
+    .navigation a {
+        font-size: 10px;
+    }
+
+    header img {
+        width: 50px;
+        height: 50px;
+    }
+}
+/* =========================
+   Expense Form
+   ========================= */
+
+.expense-form {
+    width: 90%;
+    max-width: 750px;
+    margin: 100px auto;
+    padding: 35px;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    
+    backdrop-filter: blur(10px);
+}
+
+.expense-form h2 {
+    margin: 0 0 10px;
+    font-size: 32px;
+}
+
+.expense-form input,
+.expense-form select,
+.expense-form button {
+    width: 100%;
+    max-width: 500px;
+    padding: 15px 18px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+.expense-form input,
+.expense-form select {
+    background: white;
+    color: #333;
+}
+
+.expense-form button {
+    background: #265b8a;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.expense-form button:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+}
+
+
+/* =========================
+   Spacing Between Sections
+   ========================= */
+
+.content {
+    margin-bottom: 120px;
+}
+
+.expense-form {
+    margin-bottom: 140px;
+}
+
+.about {
+    margin-bottom: 140px;
+}
+
+.contact {
+    margin-bottom: 100px;
+}
+
+
+/* =========================
+   Mobile
+   ========================= */
+
+@media (max-width: 600px) {
+
+    .expense-form {
+        width: 90%;
+        margin: 70px auto 100px;
+        padding: 25px 18px;
+        border-radius: 16px;
+    }
+
+    .expense-form h2 {
+        font-size: 26px;
+    }
+
+    .expense-form input,
+    .expense-form select,
+    .expense-form button {
+        width: 100%;
+        padding: 13px;
+        font-size: 15px;
+    }
+
+    .content {
+        margin-bottom: 90px;
+    }
+
+    .about {
+        margin-bottom: 100px;
+    }
+
+    .contact {
+        margin-bottom: 70px;
+    }
+}
+
+
+/* =========================
+   Small Phones
+   ========================= */
+
+@media (max-width: 380px) {
+
+    .expense-form {
+        width: 92%;
+        padding: 20px 15px;
+    }
+
+    .expense-form h2 {
+        font-size: 23px;
+    }
+}
+h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #ffffff;
+}
+h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: #ffffff;
+}
+.summary {
+    width: 90%;
+    max-width: 900px;
+    margin: 80px auto;
+
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 25px;
+
+    flex-wrap: wrap;
+}
+
+.summary div {
+    width: 250px;
+    padding: 25px;
+
+    text-align: center;
+
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 15px;
+
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.summary h3 {
+    margin-top: 0;
+}
+
+
+/* Transactions */
+
+.transactions {
+    width: 90%;
+    max-width: 800px;
+
+    margin: 100px auto;
+
+    text-align: center;
+}
+
+.transaction {
+    width: 100%;
+
+    padding: 15px;
+    margin: 12px auto;
+
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+
+    font-size: 18px;
+}
+
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    .summary {
+        width: 90%;
+        margin: 60px auto;
+
+        display: flex;
+        flex-direction: column;
+
+        align-items: center;
+        justify-content: center;
+    }
+
+    .summary div {
+        width: 100%;
+        max-width: 350px;
+    }
+
+    .transactions {
+        width: 90%;
+        max-width: 500px;
+
+        margin: 70px auto;
+
+        text-align: center;
+    }
+
+    .transaction {
+        width: 100%;
+        margin: 12px auto;
+    }
+}
+   .transaction {
+    width: 100%;
+    max-width: 700px;
+
+    margin: 15px auto;
+    padding: 18px 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+
+    background: rgba(255, 255, 255, 0.15);
+
+    border-radius: 12px;
+
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+
+    font-size: 17px;
+}
+
+.transaction button {
+    padding: 8px 14px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: #8a2638;
+    color: white;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.transaction button:hover {
+    transform: scale(1.05);
+    opacity: 0.85;
+}
+
+
+@media (max-width: 600px) {
+
+    .transaction {
+        flex-wrap: wrap;
+        justify-content: center;
+
+        text-align: center;
+    }
+
+    .transaction span {
+        width: 100%;
+    }
+
+    .transaction button {
+        margin-top: 5px;
+    }
+}   
+/* =========================
+   Mobile Professional Design
+   ========================= */
+
+@media (max-width: 600px) {
+
+    body {
+        overflow-x: hidden;
+    }
+
+    /* Header */
+    header {
+        padding: 18px 20px;
+    }
+
+    .navigation ul {
+        gap: 14px;
+    }
+
+    .navigation a {
+        font-size: 14px;
+    }
+
+    header img {
+        width: 58px;
+        height: 58px;
+    }
+
+
+    /* Welcome Section */
+    .content {
+        padding: 80px 25px;
+        margin-bottom: 100px;
+    }
+
+    .content h1 {
+        font-size: 32px;
+        line-height: 1.3;
+        margin-bottom: 25px;
+    }
+
+    .content p {
+        font-size: 18px;
+        line-height: 1.8;
+    }
+
+
+    /* Expense Form */
+    .expense-form {
+        width: 90%;
+        margin: 80px auto 120px;
+        padding: 30px 20px;
+    }
+
+    .expense-form h2 {
+        font-size: 28px;
+        margin-bottom: 15px;
+    }
+
+    .expense-form input,
+    .expense-form select,
+    .expense-form button {
+        font-size: 17px;
+        padding: 15px;
+    }
+
+
+    /* Summary */
+    .summary {
+        width: 90%;
+        margin: 100px auto 130px;
+        gap: 25px;
+    }
+
+    .summary div {
+        width: 100%;
+        max-width: 360px;
+        padding: 28px 20px;
+    }
+
+    .summary h3 {
+        font-size: 19px;
+    }
+
+    .summary p {
+        font-size: 18px;
+    }
+
+
+    /* Transactions */
+    .transactions {
+        width: 90%;
+        margin: 100px auto 140px;
+    }
+
+    .transactions h2 {
+        font-size: 28px;
+        margin-bottom: 30px;
+    }
+
+    .transaction {
+        width: 100%;
+        padding: 18px 15px;
+        margin: 15px auto;
+        font-size: 17px;
+        line-height: 1.6;
+    }
+
+
+    /* About Me */
+    .about {
+        width: 90%;
+        margin: 120px auto 150px;
+        padding: 40px 10px;
+    }
+
+    .about h1 {
+        font-size: 34px;
+        margin-bottom: 30px;
+    }
+
+    .about p {
+        font-size: 18px;
+        line-height: 1.9;
+    }
+
+
+    /* Contact */
+    .contact {
+        width: 90%;
+        margin: 120px auto 120px;
+        padding: 40px 10px;
+    }
+
+    .contact h1 {
+        font-size: 34px;
+        margin-bottom: 30px;
+    }
+
+    .contact p,
+    .contact li {
+        font-size: 18px;
+        line-height: 1.9;
+    }
+
+
+    /* Footer */
+    footer {
+        padding: 40px 20px;
+        margin-top: 80px;
+        text-align: center;
+    }
+
+    footer p {
+        font-size: 16px;
+        line-height: 1.7;
+    }
+}
