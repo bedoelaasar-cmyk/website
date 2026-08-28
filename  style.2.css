@@ -1,644 +1,1337 @@
+/* =========================================
+   RESET
+========================================= */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+html {
     scroll-behavior: smooth;
 }
-h1 {
-    font-size: 3rem;
-    color: #fff;
-    text-align: center;
-    margin: 2rem 0;
-}
-body { margin: 0; min-height: 100vh;
-background-image: url("./B.png");
-background-size: cover;
-background-position: center;
-background-repeat: no-repeat;
-background-attachment: fixed;
 
-color: white;
-font-family: Arial, sans-serif;}
+:root {
+    --scroll: 0;
 
-@media (max-width: 768px) {
-    body {
-        background-image: url("./B.png");
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-attachment: scroll;
-    }
+    --text: #172033;
+    --muted: #64748b;
+
+    --glass: rgba(255, 255, 255, 0.22);
+    --glass-strong: rgba(255, 255, 255, 0.34);
+    --glass-border: rgba(255, 255, 255, 0.55);
+
+    --primary: #6258ff;
+
+    --shadow:
+        0 25px 70px rgba(15, 23, 42, 0.16);
 }
 
-header {
-    display:  flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 2rem auto;
-    max-width: 1200px;
-}
-.navigation ul {
-    list-style-type: none;
-    display: flex;
-    gap: 2rem;
-}
-.navigation a {
-    text-decoration: none;
-    color: #fff;
-    font-size: 1.2rem;
-    transition: 0.3s ease-in-out;
-}
-.navigation a:hover {
-    color: #1cbeb1;
-}
-hr {
-    opacity: 50%;
-}
-p {
-    color: #fff;
-    font-size: 1.2rem;
-    text-align: center;
-    margin: 2rem 0;
-}
-ul {
-    list-style-type: none;
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    color: #ffffff;
-}
-/* =========================
-   Responsive Design
-   ========================= */
 
-* {
-    box-sizing: border-box;
-}
-
-img {
-    max-width: 100%;
-    height: auto;
-}
+/* =========================================
+   BODY
+========================================= */
 
 body {
-    width: 100%;
+    font-family:
+        Inter,
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    color: var(--text);
+
+    line-height: 1.6;
+
+    min-height: 100vh;
+
     overflow-x: hidden;
-}
 
-/* Tablets */
-@media (max-width: 900px) {
+    /*
+       Day -> Sunset -> Night
+    */
 
-    header {
-        padding: 20px 4%;
-    }
+    background:
+        linear-gradient(
+            180deg,
 
-    .navigation ul {
-        gap: 20px;
-    }
+            hsl(
+                205,
+                calc(80% - (var(--scroll) * 30%)),
+                calc(78% - (var(--scroll) * 55%))
+            ),
 
-    .navigation a {
-        font-size: 16px;
-    }
+            hsl(
+                30,
+                calc(85% - (var(--scroll) * 45%)),
+                calc(88% - (var(--scroll) * 70%))
+            ),
 
-    .content {
-        padding: 80px 5%;
-    }
+            hsl(
+                245,
+                calc(65% - (var(--scroll) * 15%)),
+                calc(85% - (var(--scroll) * 78%))
+            )
+        );
 
-    .content h1 {
-        font-size: 40px;
-    }
-}
+    background-attachment: fixed;
 
-
-/* Phones */
-@media (max-width: 600px) {
-
-    header {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        gap: 10px;
-        padding: 15px;
-    }
-
-    /* Navigation stays horizontal */
-    .navigation ul {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        gap: 10px;
-        margin: 0;
-        padding: 0;
-    }
-
-    .navigation a {
-        font-size: 12px;
-        white-space: nowrap;
-    }
-
-    /* Profile image */
-    header img {
-        width: 60px;
-        height: 60px;
-        object-fit: cover;
-    }
-
-    .content {
-        padding: 60px 20px;
-        text-align: center;
-    }
-
-    .content h1 {
-        font-size: clamp(28px, 8vw, 40px);
-    }
-
-    .content p {
-        font-size: 16px;
-    }
-
-    .about,
-    .contact {
-        padding: 50px 20px;
-    }
-
-    .about h1,
-    .contact h1 {
-        font-size: clamp(28px, 8vw, 40px);
-    }
-
-    .about p,
-    .contact p,
-    .contact li {
-        font-size: 16px;
-    }
+    transition:
+        background 0.8s ease;
 }
 
 
-/* Very small phones */
-@media (max-width: 380px) {
+/* =========================================
+   SKY EFFECT
+========================================= */
 
-    header {
-        padding: 10px;
-    }
+.sky {
+    position: fixed;
 
-    .navigation ul {
-        gap: 6px;
-    }
+    inset: 0;
 
-    .navigation a {
-        font-size: 10px;
-    }
+    pointer-events: none;
 
-    header img {
-        width: 50px;
-        height: 50px;
-    }
-}
-/* =========================
-   Expense Form
-   ========================= */
+    z-index: -5;
 
-.expense-form {
-    width: 90%;
-    max-width: 750px;
-    margin: 100px auto;
-    padding: 35px;
-    
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 18px;
-
-    background: rgba(255, 255, 255, 0.15);
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    
-    backdrop-filter: blur(10px);
+    overflow: hidden;
 }
 
-.expense-form h2 {
-    margin: 0 0 10px;
-    font-size: 32px;
+
+/* =========================================
+   SUN
+========================================= */
+
+.sun {
+    position: absolute;
+
+    width: 150px;
+    height: 150px;
+
+    border-radius: 50%;
+
+    top: 9%;
+    right: 12%;
+
+    background:
+        radial-gradient(
+            circle,
+            #fffbd1 0%,
+            #ffe889 45%,
+            #ffc84a 70%,
+            rgba(255, 200, 74, 0) 72%
+        );
+
+    box-shadow:
+        0 0 35px rgba(255, 221, 120, 0.9),
+        0 0 100px rgba(255, 190, 60, 0.55);
+
+    opacity:
+        calc(1 - (var(--scroll) * 2));
+
+    transform:
+        translateY(calc(var(--scroll) * 250px))
+        scale(
+            calc(1 - (var(--scroll) * 0.35))
+        );
+
+    transition:
+        opacity 0.5s ease;
 }
 
-.expense-form input,
-.expense-form select,
-.expense-form button {
-    width: 100%;
-    max-width: 500px;
-    padding: 15px 18px;
-    border: none;
-    border-radius: 10px;
-    font-size: 16px;
+
+/* =========================================
+   MOON
+========================================= */
+
+.moon {
+    position: absolute;
+
+    width: 115px;
+    height: 115px;
+
+    border-radius: 50%;
+
+    right: 12%;
+    bottom: 10%;
+
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            #ffffff,
+            #e7e9f5 55%,
+            #cbd0e5 100%
+        );
+
+    box-shadow:
+        0 0 30px rgba(255,255,255,0.75),
+        0 0 100px rgba(255,255,255,0.35);
+
+    opacity:
+        calc(
+            max(
+                0,
+                (var(--scroll) - 0.48) * 2
+            )
+        );
+
+    transform:
+        translateY(
+            calc(
+                (1 - var(--scroll)) * 100px
+            )
+        );
+
+    transition:
+        opacity 0.8s ease;
 }
 
-.expense-form input,
-.expense-form select {
+
+/* Moon crater effect */
+
+.moon::before,
+.moon::after {
+    content: "";
+
+    position: absolute;
+
+    border-radius: 50%;
+
+    background: rgba(150, 155, 180, 0.18);
+}
+
+.moon::before {
+    width: 20px;
+    height: 20px;
+
+    top: 28px;
+    left: 25px;
+}
+
+.moon::after {
+    width: 14px;
+    height: 14px;
+
+    bottom: 28px;
+    right: 25px;
+}
+
+
+/* =========================================
+   CLOUDS
+========================================= */
+
+.cloud {
+    position: absolute;
+
+    width: 170px;
+    height: 55px;
+
+    border-radius: 50px;
+
+    background: rgba(255,255,255,0.65);
+
+    filter: blur(1px);
+
+    box-shadow:
+        0 10px 30px rgba(255,255,255,0.25);
+
+    opacity:
+        calc(
+            1 - (var(--scroll) * 1.4)
+        );
+
+    transition:
+        opacity 0.7s ease;
+}
+
+.cloud::before,
+.cloud::after {
+    content: "";
+
+    position: absolute;
+
+    border-radius: 50%;
+
+    background: inherit;
+}
+
+.cloud::before {
+    width: 75px;
+    height: 75px;
+
+    left: 25px;
+    bottom: 15px;
+}
+
+.cloud::after {
+    width: 95px;
+    height: 95px;
+
+    right: 25px;
+    bottom: 10px;
+}
+
+.cloud-1 {
+    top: 18%;
+    left: 7%;
+
+    transform: scale(1.1);
+}
+
+.cloud-2 {
+    top: 32%;
+    right: 3%;
+
+    transform: scale(0.75);
+}
+
+.cloud-3 {
+    top: 10%;
+    left: 42%;
+
+    transform: scale(0.65);
+}
+
+
+/* =========================================
+   STARS
+========================================= */
+
+.stars {
+    position: absolute;
+
+    inset: 0;
+
+    opacity:
+        calc(
+            max(
+                0,
+                (var(--scroll) - 0.42) * 1.8
+            )
+        );
+
+    transition:
+        opacity 0.8s ease;
+}
+
+.star {
+    position: absolute;
+
+    width: 3px;
+    height: 3px;
+
+    border-radius: 50%;
+
     background: white;
-    color: #333;
+
+    box-shadow:
+        0 0 7px white;
+
+    animation:
+        twinkle 2.5s infinite ease-in-out;
 }
 
-.expense-form button {
-    background: #265b8a;
-    color: white;
-    cursor: pointer;
-    font-weight: bold;
-    transition: 0.3s;
+@keyframes twinkle {
+
+    0%,
+    100% {
+        opacity: 0.35;
+        transform: scale(0.8);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.5);
+    }
 }
 
-.expense-form button:hover {
+
+/* =========================================
+   MAIN WIDTH
+========================================= */
+
+.content,
+.expense-form,
+.summary,
+.transactions,
+.about-me,
+.contact {
+    width: min(92%, 1050px);
+
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+header {
+    width: 100%;
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 1000;
+
+    background:
+        rgba(255,255,255,0.18);
+
+    backdrop-filter: blur(20px);
+
+    -webkit-backdrop-filter: blur(20px);
+
+    border-bottom:
+        1px solid rgba(255,255,255,0.35);
+}
+
+
+/* =========================================
+   NAVIGATION
+========================================= */
+
+.navigation {
+    width: min(92%, 1050px);
+
+    margin: auto;
+
+    padding: 18px 0;
+}
+
+.navigation ul {
+    list-style: none;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 45px;
+}
+
+.navigation a {
+    color: #172033;
+
+    text-decoration: none;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    padding: 8px 5px;
+
+    transition: 0.25s ease;
+}
+
+.navigation a:hover {
+    color: var(--primary);
+
     transform: translateY(-2px);
-    opacity: 0.9;
 }
 
 
-/* =========================
-   Spacing Between Sections
-   ========================= */
+/* =========================================
+   THEME BUTTONS
+========================================= */
+
+.theme-controls {
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding:
+        0 20px 17px;
+}
+
+.theme-controls button {
+    border: 1px solid
+        rgba(255,255,255,0.55);
+
+    background:
+        rgba(255,255,255,0.3);
+
+    color: #172033;
+
+    padding: 8px 15px;
+
+    border-radius: 999px;
+
+    cursor: pointer;
+
+    font-weight: 700;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+.theme-controls button:hover {
+    transform: translateY(-2px);
+
+    background:
+        rgba(255,255,255,0.55);
+}
+
+.theme-controls button.active {
+    background: var(--primary);
+
+    color: white;
+
+    border-color: var(--primary);
+}
+
+
+/* =========================================
+   HERO
+========================================= */
 
 .content {
-    margin-bottom: 120px;
+    text-align: center;
+
+    padding-top: 110px;
+
+    padding-bottom: 90px;
 }
 
-.expense-form {
-    margin-bottom: 140px;
-}
+.content h1 {
+    width: 100%;
 
-.about {
-    margin-bottom: 140px;
-}
-
-.contact {
-    margin-bottom: 100px;
-}
-
-
-/* =========================
-   Mobile
-   ========================= */
-
-@media (max-width: 600px) {
-
-    .expense-form {
-        width: 90%;
-        margin: 70px auto 100px;
-        padding: 25px 18px;
-        border-radius: 16px;
-    }
-
-    .expense-form h2 {
-        font-size: 26px;
-    }
-
-    .expense-form input,
-    .expense-form select,
-    .expense-form button {
-        width: 100%;
-        padding: 13px;
-        font-size: 15px;
-    }
-
-    .content {
-        margin-bottom: 90px;
-    }
-
-    .about {
-        margin-bottom: 100px;
-    }
-
-    .contact {
-        margin-bottom: 70px;
-    }
-}
-
-
-/* =========================
-   Small Phones
-   ========================= */
-
-@media (max-width: 380px) {
-
-    .expense-form {
-        width: 92%;
-        padding: 20px 15px;
-    }
-
-    .expense-form h2 {
-        font-size: 23px;
-    }
-}
-h2 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-    color: #ffffff;
-}
-h3 {
-    font-size: 1.2rem;
-    margin-bottom: 0.5rem;
-    color: #ffffff;
-}
-.summary {
-    width: 90%;
     max-width: 900px;
-    margin: 80px auto;
 
-    display: flex;
-    justify-content: center;
-    align-items: stretch;
-    gap: 25px;
-
-    flex-wrap: wrap;
-}
-
-.summary div {
-    width: 250px;
-    padding: 25px;
+    margin:
+        0 auto 20px;
 
     text-align: center;
 
-    background: rgba(255, 255, 255, 0.15);
-    border-radius: 15px;
+    font-size:
+        clamp(36px, 6vw, 62px);
 
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    line-height: 1.12;
+
+    letter-spacing: -1.5px;
+
+    font-weight: 850;
 }
 
-.summary h3 {
-    margin-top: 0;
-}
+.content p {
+    width: min(100%, 700px);
 
-
-/* Transactions */
-
-.transactions {
-    width: 90%;
-    max-width: 800px;
-
-    margin: 100px auto;
+    margin: auto;
 
     text-align: center;
-}
 
-.transaction {
-    width: 100%;
-
-    padding: 15px;
-    margin: 12px auto;
-
-    background: rgba(255, 255, 255, 0.15);
-    border-radius: 10px;
-
-    font-size: 18px;
-}
-
-
-/* Mobile */
-
-@media (max-width: 600px) {
-
-    .summary {
-        width: 90%;
-        margin: 60px auto;
-
-        display: flex;
-        flex-direction: column;
-
-        align-items: center;
-        justify-content: center;
-    }
-
-    .summary div {
-        width: 100%;
-        max-width: 350px;
-    }
-
-    .transactions {
-        width: 90%;
-        max-width: 500px;
-
-        margin: 70px auto;
-
-        text-align: center;
-    }
-
-    .transaction {
-        width: 100%;
-        margin: 12px auto;
-    }
-}
-   .transaction {
-    width: 100%;
-    max-width: 700px;
-
-    margin: 15px auto;
-    padding: 18px 20px;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 15px;
-
-    background: rgba(255, 255, 255, 0.15);
-
-    border-radius: 12px;
-
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    color: var(--muted);
 
     font-size: 17px;
 }
 
-.transaction button {
-    padding: 8px 14px;
+
+/* =========================================
+   GLASS CARD
+========================================= */
+
+.expense-form,
+.transactions,
+.about-me,
+.contact {
+    background:
+        rgba(255,255,255,0.20);
+
+    backdrop-filter:
+        blur(22px);
+
+    -webkit-backdrop-filter:
+        blur(22px);
+
+    border:
+        1px solid var(--glass-border);
+
+    box-shadow:
+        var(--shadow);
+
+    border-radius: 26px;
+}
+
+
+/* =========================================
+   EXPENSE FORM
+========================================= */
+
+.expense-form {
+    padding: 42px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 22px;
+
+    margin-bottom: 110px;
+}
+
+.expense-form h2 {
+    grid-column: 1 / -1;
+
+    text-align: center;
+
+    font-size: 30px;
+
+    margin-bottom: 8px;
+}
+
+
+/* Inputs */
+
+.expense-form input,
+.expense-form select {
+    width: 100%;
+
+    min-height: 54px;
+
+    padding:
+        14px 17px;
+
+    border:
+        1px solid
+        rgba(148,163,184,0.35);
+
+    border-radius: 13px;
+
+    background:
+        rgba(255,255,255,0.55);
+
+    color: #172033;
+
+    font-size: 16px;
+
+    outline: none;
+
+    transition:
+        0.25s ease;
+}
+
+.expense-form input:focus,
+.expense-form select:focus {
+    background:
+        rgba(255,255,255,0.8);
+
+    border-color:
+        #6366f1;
+
+    box-shadow:
+        0 0 0 4px
+        rgba(99,102,241,0.12);
+
+    transform:
+        translateY(-2px);
+}
+
+
+/* =========================================
+   BUTTON
+========================================= */
+
+#addButton {
+    grid-column: 1 / -1;
+
+    min-height: 55px;
 
     border: none;
-    border-radius: 8px;
 
-    background: #8a2638;
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #7168ff,
+            #493fe0
+        );
+
     color: white;
+
+    font-size: 16px;
+
+    font-weight: 800;
 
     cursor: pointer;
 
-    transition: 0.2s;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
-.transaction button:hover {
-    transform: scale(1.05);
-    opacity: 0.85;
+#addButton:hover {
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0 15px 35px
+        rgba(79,70,229,0.3);
+}
+
+#addButton:active {
+    transform:
+        scale(0.98);
+}
+
+
+/* =========================================
+   SUMMARY
+========================================= */
+
+.summary {
+    width: min(92%, 1050px);
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 24px;
+
+    margin:
+        0 auto 110px;
+}
+
+.summary > div {
+    width: 100%;
+
+    height: 180px;
+
+    min-width: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    padding: 25px;
+
+    background:
+        rgba(255,255,255,0.25);
+
+    backdrop-filter:
+        blur(20px);
+
+    -webkit-backdrop-filter:
+        blur(20px);
+
+    border:
+        1px solid
+        rgba(255,255,255,0.55);
+
+    border-radius: 22px;
+
+    box-shadow:
+        0 20px 50px
+        rgba(15,23,42,0.12);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.summary > div:hover {
+    transform:
+        translateY(-8px);
+
+    box-shadow:
+        0 30px 60px
+        rgba(15,23,42,0.17);
+}
+
+.summary h3 {
+    color: var(--muted);
+
+    font-size: 14px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+
+    margin-bottom: 8px;
+}
+
+.summary p {
+    width: 100%;
+
+    text-align: center;
+
+    font-size:
+        clamp(21px, 3vw, 30px);
+
+    font-weight: 850;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* =========================================
+   TRANSACTIONS CONTAINER
+========================================= */
+
+.transactions {
+    padding: 40px;
+
+    margin-bottom: 1400px;
+}
+
+.transactions h2 {
+    text-align: center;
+
+    font-size: 32px;
+
+    margin-bottom: 30px;
+}
+
+#transactionList {
+    width: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 15px;
+}
+
+
+/* =========================================
+   TRANSACTION
+========================================= */
+
+.transaction {
+    width: 100%;
+
+    min-height: 78px;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0,1fr)
+        auto
+        auto;
+
+    align-items: center;
+
+    gap: 20px;
+
+    padding:
+        16px 20px;
+
+    background:
+        rgba(255,255,255,0.28);
+
+    border:
+        1px solid
+        rgba(255,255,255,0.45);
+
+    border-radius: 15px;
+
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease;
+}
+
+.transaction:hover {
+    transform:
+        translateX(4px);
+
+    background:
+        rgba(255,255,255,0.4);
+}
+
+.transaction-info {
+    min-width: 0;
+}
+
+.transaction-name {
+    display: block;
+
+    font-weight: 750;
+
+    overflow-wrap: anywhere;
+}
+
+.transaction-type {
+    display: block;
+
+    color: var(--muted);
+
+    font-size: 13px;
+}
+
+.transaction-amount {
+    font-weight: 850;
+
+    white-space: nowrap;
+}
+
+.income {
+    color: #15803d;
+}
+
+.expense {
+    color: #dc2626;
+}
+
+
+/* =========================================
+   DELETE
+========================================= */
+
+.delete-btn {
+    width: 42px;
+
+    height: 42px;
+
+    border: none;
+
+    border-radius: 11px;
+
+    background:
+        rgba(255,228,230,0.8);
+
+    color: #e11d48;
+
+    font-size: 20px;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.delete-btn:hover {
+    transform:
+        scale(1.08);
+
+    background:
+        #ffe4e6;
+}
+
+
+/* =========================================
+   EMPTY TRANSACTIONS
+========================================= */
+
+.empty-message {
+    width: 100%;
+
+    padding: 40px 20px;
+
+    text-align: center;
+
+    background:
+        rgba(255,255,255,0.18);
+
+    border:
+        1px dashed
+        rgba(255,255,255,0.7);
+
+    border-radius: 16px;
+
+    color: var(--muted);
+}
+
+
+/* =========================================
+   ABOUT / CONTACT
+========================================= */
+
+.about-me {
+    margin-bottom: 180px;
+
+    padding: 45px;
+}
+.contact {
+    margin-bottom: 180px;
+
+    padding: 45px;
+}
+
+.textcontainer {
+    width: 100%;
+
+    min-height: 240px;
+
+    display: center;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+}
+
+.text-title {
+    width: 100%;
+
+    max-width: 750px;
+
+    text-align: center;
+}
+
+.text-title h1 {
+    text-align: center;
+
+    font-size: 34px;
+
+    margin-bottom: 17px;
+}
+
+.text-title p {
+    width: 100%;
+
+    text-align: center;
+
+    color: var(--muted);
+
+    overflow-wrap: anywhere;
+}
+
+
+/* =========================================
+   CONTACT
+========================================= */
+
+.contact ul {
+    width: 100%;
+
+    list-style: none;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: stretch;
+
+    flex-wrap: wrap;
+
+    gap: 18px;
+
+    margin-top: 25px;
+}
+
+.contact li {
+    min-width: 230px;
+
+    padding: 14px 20px;
+
+    text-align: center;
+
+    background:
+        rgba(255,255,255,0.35);
+
+    border:
+        1px solid
+        rgba(255,255,255,0.5);
+
+    border-radius: 13px;
+
+    color: #475569;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+footer {
+    width: 100%;
+
+    margin: 0;
+
+    padding: 35px 20px;
+
+    text-align: center;
+
+    background:
+        rgba(2,6,23,0.72);
+
+    backdrop-filter:
+        blur(15px);
+
+    -webkit-backdrop-filter:
+        blur(15px);
+
+    color: #e2e8f0;
+
+    border-top:
+        1px solid
+        rgba(255,255,255,0.18);
+}
+
+footer p {
+    width: 100%;
+
+    margin: 0;
+
+    text-align: center;
+}
+
+
+/* =========================================
+   NOTIFICATION
+========================================= */
+
+.notification {
+    position: fixed;
+
+    top: 25px;
+
+    right: 25px;
+
+    z-index: 9999;
+
+    max-width: 350px;
+
+    padding:
+        14px 20px;
+
+    border-radius: 12px;
+
+    background:
+        rgba(15,23,42,0.92);
+
+    color: white;
+
+    box-shadow:
+        0 15px 35px
+        rgba(0,0,0,0.2);
+
+    transform:
+        translateX(150%);
+
+    transition:
+        transform 0.35s ease;
+}
+
+.notification.show {
+    transform:
+        translateX(0);
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 800px) {
+
+    .summary {
+        grid-template-columns: 1fr;
+    }
+
+    .expense-form {
+        grid-template-columns: 1fr;
+    }
+
+    .expense-form h2,
+    #addButton {
+        grid-column: auto;
+    }
 }
 
 
 @media (max-width: 600px) {
-
-    .transaction {
-        flex-wrap: wrap;
-        justify-content: center;
-
-        text-align: center;
-    }
-
-    .transaction span {
-        width: 100%;
-    }
-
-    .transaction button {
-        margin-top: 5px;
-    }
-}   
-/* =========================
-   Mobile Professional Design
-   ========================= */
-
-@media (max-width: 600px) {
-
-    body {
-        overflow-x: hidden;
-    }
-
-    /* Header */
-    header {
-        padding: 18px 20px;
-    }
 
     .navigation ul {
         gap: 14px;
+
+        flex-wrap: wrap;
     }
 
     .navigation a {
-        font-size: 14px;
+        font-size: 13px;
     }
 
-    header img {
-        width: 58px;
-        height: 58px;
+    .theme-controls {
+        flex-wrap: wrap;
     }
 
-
-    /* Welcome Section */
     .content {
-        padding: 80px 25px;
-        margin-bottom: 100px;
+        padding-top: 70px;
+
+        padding-bottom: 70px;
+    }
+
+    .content h1 {
+        font-size: 37px;
+    }
+
+    .content p {
+        font-size: 15px;
+    }
+
+    .expense-form {
+        width: 92%;
+
+        padding: 28px 18px;
+
+        margin-bottom: 85px;
+    }
+
+    .summary {
+        width: 92%;
+
+        gap: 18px;
+
+        margin-bottom: 85px;
+    }
+
+    .summary > div {
+        height: 160px;
+    }
+
+    .transactions {
+        width: 92%;
+
+        padding: 25px 18px;
+
+        margin-bottom: 90px;
+    }
+
+    .transaction {
+        grid-template-columns:
+            minmax(0,1fr)
+            auto;
+
+        gap: 10px;
+    }
+
+    .transaction-amount {
+        grid-column: 1;
+    }
+
+    .delete-btn {
+        grid-column: 2;
+
+        grid-row: 1 / 3;
+    }
+
+    .about-me,
+    .contact {
+        width: 92%;
+
+        padding: 25px 18px;
+
+        margin-bottom: 80px;
+    }
+
+    .textcontainer {
+        min-height: 220px;
+    }
+
+    .text-title h1 {
+        font-size: 28px;
+    }
+
+    .contact li {
+        width: 100%;
+
+        min-width: 0;
+    }
+
+    .moon {
+        width: 75px;
+
+        height: 75px;
+
+        right: 7%;
+    }
+
+    .sun {
+        width: 95px;
+
+        height: 95px;
+
+        right: 7%;
+    }
+}
+
+
+/* =========================================
+   SMALL PHONES
+========================================= */
+
+@media (max-width: 380px) {
+
+    .navigation ul {
+        gap: 9px;
+    }
+
+    .navigation a {
+        font-size: 12px;
+    }
+
+    .theme-controls button {
+        padding: 7px 10px;
+
+        font-size: 12px;
     }
 
     .content h1 {
         font-size: 32px;
-        line-height: 1.3;
-        margin-bottom: 25px;
     }
 
-    .content p {
-        font-size: 18px;
-        line-height: 1.8;
-    }
-
-
-    /* Expense Form */
-    .expense-form {
-        width: 90%;
-        margin: 80px auto 120px;
-        padding: 30px 20px;
-    }
-
-    .expense-form h2 {
-        font-size: 28px;
-        margin-bottom: 15px;
-    }
-
-    .expense-form input,
-    .expense-form select,
-    .expense-form button {
-        font-size: 17px;
-        padding: 15px;
-    }
-
-
-    /* Summary */
-    .summary {
-        width: 90%;
-        margin: 100px auto 130px;
-        gap: 25px;
-    }
-
-    .summary div {
-        width: 100%;
-        max-width: 360px;
-        padding: 28px 20px;
-    }
-
-    .summary h3 {
-        font-size: 19px;
-    }
-
-    .summary p {
-        font-size: 18px;
-    }
-
-
-    /* Transactions */
-    .transactions {
-        width: 90%;
-        margin: 100px auto 140px;
-    }
-
-    .transactions h2 {
-        font-size: 28px;
-        margin-bottom: 30px;
-    }
-
-    .transaction {
-        width: 100%;
-        padding: 18px 15px;
-        margin: 15px auto;
-        font-size: 17px;
-        line-height: 1.6;
-    }
-
-
-    /* About Me */
-    .about {
-        width: 90%;
-        margin: 120px auto 150px;
-        padding: 40px 10px;
-    }
-
-    .about h1 {
-        font-size: 34px;
-        margin-bottom: 30px;
-    }
-
-    .about p {
-        font-size: 18px;
-        line-height: 1.9;
-    }
-
-
-    /* Contact */
+    .expense-form,
+    .summary,
+    .transactions,
+    .about-me,
     .contact {
-        width: 90%;
-        margin: 120px auto 120px;
-        padding: 40px 10px;
+        width: 94%;
     }
-
-    .contact h1 {
-        font-size: 34px;
-        margin-bottom: 30px;
-    }
-
-    .contact p,
-    .contact li {
-        font-size: 18px;
-        line-height: 1.9;
-    }
+}
 
 
-    /* Footer */
-    footer {
-        padding: 40px 20px;
-        margin-top: 80px;
-        text-align: center;
-    }
+/* =========================================
+   ACCESSIBILITY
+========================================= */
 
-    footer p {
-        font-size: 16px;
-        line-height: 1.7;
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+a:focus-visible {
+    outline:
+        3px solid
+        rgba(99,102,241,0.35);
+
+    outline-offset: 3px;
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration:
+            0.01ms !important;
+
+        animation-iteration-count:
+            1 !important;
+
+        transition-duration:
+            0.01ms !important;
+
+        scroll-behavior:
+            auto !important;
     }
 }
